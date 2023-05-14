@@ -56,7 +56,7 @@ Expose Services to the TOR network automatically
 - expose localhost server running on port 80 to tor network on tor host port 80
 
     ```bash
-
+    torsposer -s http_service -sp 80 -tp 80
     ```
 
 > Note: if `torsposer` doesn't work try replacing it with `python3 -m torsposer`
