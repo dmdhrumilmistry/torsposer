@@ -89,6 +89,7 @@ class TorServiceExposer:
         torrc_content = torrc_content.splitlines()
 
         if torrc_content[0] == '## Configuration file for a typical Tor user':
+            logger.warning('Default torrc file will be overwritten')
             torrc_file_content = dedent(f'''
             ## Enable TOR SOCKS proxy
             SOCKSPort 127.0.0.1:9050
