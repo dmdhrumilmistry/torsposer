@@ -2,7 +2,16 @@ from argparse import ArgumentParser
 from .exposer import TorServiceExposer
 from textwrap import dedent
 
-if __name__ == '__main__':
+
+def start():
+    '''Starts torsposer cli tool
+    
+    Arguments:
+        None
+
+    Returns:
+        None
+    '''
     print(dedent('''
      dMMMMMMP .aMMMb  dMMMMb  .dMMMb  dMMMMb  .aMMMb  .dMMMb  dMMMMMP dMMMMb 
        dMP   dMP"dMP dMP.dMP dMP" VP dMP.dMP dMP"dMP dMP" VP dMP     dMP.dMP 
@@ -29,3 +38,7 @@ if __name__ == '__main__':
         tor_port=args.tor_port,
     )
     automate.run()
+
+
+if __name__ == '__main__':
+    start()

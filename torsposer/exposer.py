@@ -1,6 +1,7 @@
 from textwrap import dedent
+from time import sleep
 from os import getcwd
-from os.path import join as path_join, isfile
+from os.path import join as path_join
 from .utils import run_cmd, has_sudo_perms, read_file, write_file
 
 
@@ -149,6 +150,26 @@ class TorServiceExposer:
         else:
             logger.error('Failed to restart TOR service')
 
+        logger.info('Waiting 5s to generate TOR service hostname')
+        sleep(5)
+
+
+    def get_tor_service_hostname(self):
+        '''Returns TOR hostname for the service
+        
+        Arguments:
+            None
+        
+        Returns:
+            str: hostname of tor service
+        '''
+        hostname_file = f'/var/lib/tor/{self._srv_name}/hostname'
+        hostname, status_code = run_cmd(f'sudo cat {hostname_file}')
+        if status_code != 0:
+            hostname = f'get hostname from {hostname_file}'
+        logger.info(f'TOR {self._srv_name} service hostname can be found at {hostname_file}')
+        return hostname
+
 
     def run(self):
         '''starts service automatic configuration, 
@@ -172,5 +193,7 @@ class TorServiceExposer:
             status = False
 
         self.restart_tor_service()
+        hostname = self.get_tor_service_hostname()
+        logger.info(f'TOR Service Hostname: {hostname}')
 
         return status
