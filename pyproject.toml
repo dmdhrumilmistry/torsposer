@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "torsposer"
+version = "0.1.0"
+description = "Expose Services to the TOR network automatically"
+authors = ["Dhrumil Mistry <56185972+dmdhrumilmistry@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
