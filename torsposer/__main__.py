@@ -1,7 +1,17 @@
 from argparse import ArgumentParser
-from .exposer import TorServiceExposer
 from textwrap import dedent
+import logging
 
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO,
+                    format='[%(asctime)s] [%(levelname)s] - %(message)s')
+
+
+try:
+    from .exposer import TorServiceExposer
+except ImportError:
+    logger.error('Windows is not supported yet!')
 
 def start():
     '''Starts torsposer cli tool
